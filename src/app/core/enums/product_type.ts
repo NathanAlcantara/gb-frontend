@@ -1,0 +1,11 @@
+export enum ProductType {
+	DRESS = 'DRESS',
+	SET = 'SET',
+	SHIRT = 'SHIRT',
+	PANT = 'PANT',
+	SHORT = 'SHORT',
+	SKIRT = 'SKIRT',
+	BIKINI = 'BIKINI',
+	CROPPED = 'CROPPED',
+	ACCESSORIES = 'ACCESSORIES'
+}

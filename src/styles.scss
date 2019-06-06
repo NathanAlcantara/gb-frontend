@@ -1,0 +1,50 @@
+/* You can add global styles to this file, and also import other style files */
+html, body {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+	background: aliceblue
+}
+
+button {
+	&:focus {
+		outline: none;
+	}
+}
+
+input {
+	&::-webkit-outer-spin-button,
+	&::-webkit-inner-spin-button {
+		display: none;
+	}
+
+	&:focus {
+		outline: none !important;
+	}
+}
+
+textarea {
+	outline: none !important;
+}
+
+.justify-center {
+	display: flex;
+	justify-content: center;
+}
+
+.hoverable {
+	transition: all .25s linear;
+
+	&:hover {
+		box-shadow: -1px 10px 29px 0px rgba(0, 0, 0, 0.8) !important
+	}
+}
+
+.centralize {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

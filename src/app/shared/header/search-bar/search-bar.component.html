@@ -1,0 +1,9 @@
+<div style="display: flex">
+   <form (ngSubmit)="onSearch.emit($event)">
+      <mat-form-field>
+         <input NgControl="control" autocomplete="off" matInput placeholder="Buscar produto" type="text">
+      </mat-form-field>
+   </form>
+
+   <interact-icon (onClick)="onSearch.emit($event)" icon="search"></interact-icon>
+</div>

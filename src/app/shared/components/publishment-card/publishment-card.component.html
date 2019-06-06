@@ -1,0 +1,38 @@
+<mat-card class="publish-card hoverable">
+
+   <mdb-carousel [animation]="'fade'" class="carousel slide carousel-fade">
+      <mdb-carousel-item *ngFor="let image of product.photosURL; let i = index;">
+         <div class="view w-100" style="max-width: 250px;">
+            <img [alt]="'image_'+i" [src]="image" class="d-block w-100">
+            <div class="mask rgba-black-slight waves-light" mdbWavesEffect></div>
+         </div>
+      </mdb-carousel-item>
+   </mdb-carousel>
+
+   <mat-card-content>
+      <div class="justify-center">
+         <h4>{{product?.name}}</h4>
+      </div>
+
+      <p *ngIf="product?.exPrice">de <span>{{ converterCurrency(product?.exPrice) }}</span> por</p>
+
+      <h2>{{ converterCurrency(product?.actualPrice) }}</h2>
+
+      <div *ngIf="getValueOfParcels() || (product?.paymentType && product?.paymentType.length && product?.paymentType[0] === 'IN_CASH')">
+         <div *ngFor="let payment of product?.paymentType; let i = index">
+            <p *ngIf="payment !== 'IN_CASH' && getValueOfParcels() && i > 0">ou</p>
+
+            <p>{{ payment === 'IN_CASH' ? ('enum.payment_type_' + payment.toLowerCase() | translate) : '' }} </p>
+
+            <p>{{ payment !== 'IN_CASH' && getValueOfParcels() ?
+               'até ' + product?.numberOfParcels + 'x de ' + converterCurrency(getValueOfParcels()) : '' }}</p>
+            <p>{{ payment !== 'IN_CASH' && getValueOfParcels() ?
+               'no ' + ('enum.payment_type_' + payment.toLowerCase() | translate) : '' }}</p>
+         </div>
+      </div>
+
+   </mat-card-content>
+   <mat-card-actions>
+      <button mat-raised-button>Comprar</button>
+   </mat-card-actions>
+</mat-card>

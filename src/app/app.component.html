@@ -1,0 +1,17 @@
+<header></header>
+
+<nav mat-align-tabs="center" mat-tab-nav-bar>
+   <a #rla="routerLinkActive"
+      *ngFor="let link of navLinks; let i = index"
+      [active]="rla.isActive"
+      [routerLink]="'products/' + link.path"
+      mat-tab-link routerLinkActive
+      style="font-size: 15px; text-decoration: none"
+   >
+      {{link.label.toUpperCase()}}
+   </a>
+</nav>
+
+<router-outlet></router-outlet>
+
+<footer></footer>

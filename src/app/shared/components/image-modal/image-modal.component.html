@@ -1,0 +1,28 @@
+<div *ngIf="hasAnyImage;else newImage">
+   <h1 mat-dialog-title>O que deseja fazer?</h1>
+
+   <div mat-dialog-content>
+      <div style="display: flex; justify-content: center;">
+         <mat-button-toggle-group #group="matButtonToggleGroup">
+            <mat-button-toggle (change)="data.image = null" value="view">
+               <mat-icon>folder</mat-icon>
+               <span>Ver imagens</span>
+            </mat-button-toggle>
+
+            <mat-button-toggle value="add">
+               <mat-icon>add</mat-icon>
+               <span>Adicionar imagens</span>
+            </mat-button-toggle>
+         </mat-button-toggle-group>
+      </div>
+   </div>
+
+   <n-view-images (onCancel)="cancel()" (onReorderImages)="confirm($event)" *ngIf="group.value === 'view'"
+                  [images]="data.images"></n-view-images>
+
+   <n-upload-image (onAddPhoto)="confirm($event)" (onCancel)="cancel()" *ngIf="group.value === 'add'" [data]="data"></n-upload-image>
+</div>
+
+<ng-template #newImage>
+   <n-upload-image (onAddPhoto)="confirm($event)" (onCancel)="cancel()" [data]="data"></n-upload-image>
+</ng-template>

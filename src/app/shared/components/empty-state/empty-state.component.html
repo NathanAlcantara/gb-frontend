@@ -1,0 +1,21 @@
+<div *ngIf="isError && !isEmpty" class="text-center" style="color: #999; margin: 30px;">
+   <div>
+      <mat-icon style="font-size: 150px; width: auto; color: #B00020;">error_outline</mat-icon>
+   </div>
+   <div style="font-size: 1.5rem">
+      <span>{{ firstTitleError }}</span>
+      <br>
+      <span>{{ secondTitleError }}</span>
+   </div>
+</div>
+
+<div *ngIf="isEmpty" class="text-center" style="color: #999; margin: 30px;">
+   <div>
+      <mat-icon style="font-size: 150px; width: auto;">inbox</mat-icon>
+   </div>
+   <div style="font-size: 1.5rem">
+      <span>{{ firstTitleEmpty }}</span>
+      <br>
+      <span>{{ secondTitleEmpty }}</span>
+   </div>
+</div>

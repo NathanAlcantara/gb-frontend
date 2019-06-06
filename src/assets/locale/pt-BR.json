@@ -1,0 +1,36 @@
+{
+   "modal.title.are_you_sure": "Tem certeza?",
+   "modal.detail.product_delete_forever": "Um produto deletado não pode ser recuperado!",
+   "modal.button.yes_delete": "Sim, deletar",
+   "modal.button.not_have_sure": "Não, não tenho",
+
+   "enum.payment_type_in_cash": "À vista",
+   "enum.payment_type_free_interest": "Crédito sem juros",
+   "enum.payment_type_with_interest": "Crédito com juros",
+
+   "enum.product_type_dress": "Vestido",
+   "enum.product_type_set": "Conjunto",
+   "enum.product_type_shirt": "Blusa",
+   "enum.product_type_pant": "Calça",
+   "enum.product_type_short": "Short",
+   "enum.product_type_skirt": "Saia",
+   "enum.product_type_bikini": "Biquíni",
+   "enum.product_type_cropped": "Cropped",
+   "enum.product_type_accessories": "Acessórios",
+
+   "enum.color_type_white": "Branco",
+   "enum.color_type_black": "Preto",
+   "enum.color_type_gray": "Cinza",
+   "enum.color_type_blue": "Azul",
+   "enum.color_type_red": "Vermelho",
+   "enum.color_type_green": "Verde",
+   "enum.color_type_yellow": "Amarelo",
+
+   "message.success.create_product": "Produto cadastrado com sucesso",
+   "message.success.edit_product": "Produto editado com sucesso",
+   "message.success.delete_product": "Produto deletado com sucesso",
+
+   "message.error.create_product": "Erro ao cadastrar produto",
+   "message.error.edit_product": "Erro ao editar produto",
+   "message.error.delete_product": "Erro ao deletar o produto"
+}

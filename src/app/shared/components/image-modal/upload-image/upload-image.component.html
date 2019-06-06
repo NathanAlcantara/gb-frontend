@@ -1,0 +1,40 @@
+<div>
+   <h1 mat-dialog-title>Selecione as imagens para o anúncio</h1>
+
+   <div mat-dialog-content>
+      <form [formGroup]="formImageUpload">
+         <div style="display: flex; flex-direction: column;">
+            <mat-form-field>
+               <mat-label>Imagem</mat-label>
+               <ngx-mat-file-input (change)="fileChangeEvent($event)" accept=".jpg" formControlName="image" required></ngx-mat-file-input>
+               <mat-error *ngIf="formImageUpload.get('image').hasError('required')">{{ getErrorMessage('required') }}</mat-error>
+               <mat-error *ngIf="formImageUpload.get('image').hasError('maxContentSize')">
+                  {{ getErrorMessage('actualSize', formImageUpload.get('image')?.getError('maxContentSize').actualSize | byteFormat) }}
+                  {{ getErrorMessage('maxSize', formImageUpload.get('image')?.getError('maxContentSize').maxSize | byteFormat) }}
+               </mat-error>
+               <mat-icon matSuffix>folder</mat-icon>
+            </mat-form-field>
+         </div>
+
+         <div style="display: flex;">
+            <image-cropper
+               (imageCropped)="imageCropped($event)"
+               [aspectRatio]="4 / 3"
+               [cropperMinWidth]="250"
+               [imageChangedEvent]="imageChangedEvent"
+               [onlyScaleDown]="true"
+               [resizeToWidth]="300"
+            ></image-cropper>
+
+            <div style="align-self: center;">
+               <img *ngIf="data.image" [src]="data.image" alt="broken_image"/>
+            </div>
+         </div>
+      </form>
+   </div>
+
+   <div mat-dialog-actions>
+      <button (click)="onCancel.emit(true)" cdkFocusInitial mat-button>Cancelar</button>
+      <button (click)="addPhoto()" mat-button>Adicionar</button>
+   </div>
+</div>

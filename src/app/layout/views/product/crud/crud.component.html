@@ -1,0 +1,109 @@
+<div class="crud-container centralize">
+   <div *ngIf="isLoading" class="loader">
+      <mat-spinner *ngIf="isLoading"></mat-spinner>
+   </div>
+   <mat-card>
+      <form (ngSubmit)="submitForm()" [formGroup]="formCRUD" autocomplete="off">
+
+         <mat-card-header style="justify-content: space-between; margin-bottom: 25px;">
+            <mat-card-title>Adicionar novo Produto</mat-card-title>
+            <div>
+               <button (click)="openDialog()" mat-raised-button type="button">Fotos</button>
+               <mat-error
+                  *ngIf="formCRUD.get('photosURL').errors?.required"
+                  style="font-size: 12px;">{{ getErrorMessage('imageRequired') }}
+               </mat-error>
+            </div>
+         </mat-card-header>
+
+         <mat-card-content>
+            <mat-form-field class="col-sm-3">
+               <mat-label>Código do produto</mat-label>
+               <input formControlName="code" matInput required type="number">
+               <mat-error *ngIf="formCRUD.get('code').errors?.required">{{ getErrorMessage('required') }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="col-sm-5">
+               <mat-label>Nome do produto</mat-label>
+               <input formControlName="name" matInput required>
+               <mat-error *ngIf="formCRUD.get('name').errors?.required">{{ getErrorMessage('required') }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="col-sm-4">
+               <mat-label>Tipo do produto</mat-label>
+               <mat-select formControlName="productType" required>
+                  <mat-option *ngFor="let option of optionsProductType"
+                              [value]="option">{{ 'enum.product_type_' + option.toLowerCase() | translate }}</mat-option>
+               </mat-select>
+               <mat-error *ngIf="formCRUD.get('productType').errors?.required">{{ getErrorMessage('required') }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="col-sm-6">
+               <mat-label>Preço atual do produto</mat-label>
+               <input formControlName="actualPrice" matInput required type="number">
+               <mat-error *ngIf="formCRUD.get('actualPrice').errors?.required">{{ getErrorMessage('required') }}</mat-error>
+               <span matPrefix>R$&nbsp;</span>
+            </mat-form-field>
+
+            <mat-form-field class="col-sm-6" style="margin-bottom: 10px">
+               <mat-label>Preço anterior do produto</mat-label>
+               <input formControlName="exPrice" matInput type="number">
+               <span matPrefix>R$&nbsp;</span>
+               <mat-hint>Caso tenha</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field class="col-sm-4">
+               <mat-label>Forma de pagamento</mat-label>
+               <mat-select formControlName="paymentType" multiple="true" required>
+                  <mat-option *ngFor="let option of optionsPaymentType"
+                              [value]="option">{{ 'enum.payment_type_' + option.toLowerCase() | translate }}</mat-option>
+               </mat-select>
+               <mat-error *ngIf="formCRUD.get('paymentType').errors?.required">{{ getErrorMessage('required') }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="col-sm-2">
+               <mat-label>Nº de parcelas</mat-label>
+               <input formControlName="numberOfParcels" matInput type="number">
+               <mat-error *ngIf="formCRUD.get('numberOfParcels').errors?.max">{{ getErrorMessage('maxLength', 2) }}</mat-error>
+               <mat-error *ngIf="formCRUD.get('numberOfParcels').errors?.min">{{ getErrorMessage('min', 1) }}</mat-error>
+				</mat-form-field>
+
+				<mat-form-field class="col-sm-3">
+					<mat-label>Cores</mat-label>
+					<mat-select formControlName="colors" multiple="true" required>
+						<mat-option *ngFor="let option of optionsColorType"
+										[value]="option">{{ 'enum.color_type_' + option.toLowerCase() | translate }}</mat-option>
+					</mat-select>
+				</mat-form-field>
+
+				<mat-form-field class="col-sm-3">
+					<mat-label>Tamanhos</mat-label>
+					<mat-select formControlName="sizes" multiple="true" required>
+						<mat-option *ngFor="let option of optionsSizeType"
+										[value]="option">{{ option}}</mat-option>
+					</mat-select>
+            </mat-form-field>
+         </mat-card-content>
+
+         <mat-card-footer style="display: flex; justify-content: space-evenly; margin-top: 25px;">
+            <button (click)="goBack()" mat-raised-button style="margin-right: 15px;" type="button">Voltar</button>
+            <div style="flex-basis: 10%"></div>
+            <button mat-raised-button type="button" [swal]="deleteSwal" color="accent" *ngIf="this.path === 'edit'">Excluir</button>
+            <button mat-raised-button type="submit" color="primary">{{ this.path === 'edit' ? 'Editar' : 'Cadastrar' }}</button>
+         </mat-card-footer>
+      </form>
+   </mat-card>
+
+   <publishment-card [product]="formCRUD.value" style="margin-left: 10%;"></publishment-card>
+</div>
+
+<swal
+	#deleteSwal
+	type="warning"
+	[title]="'modal.title.are_you_sure' | translate"
+	[text]="'modal.detail.product_delete_forever' | translate"
+	[confirmButtonText]="'modal.button.yes_delete' | translate"
+	[cancelButtonText]="'modal.button.not_have_sure' | translate"
+	showCancelButton="true"
+	(confirm)="deleteProduct()"
+></swal>

@@ -1,0 +1,25 @@
+<div>
+   <h1 mat-dialog-title>Organize suas imagens</h1>
+
+   <div mat-dialog-content>
+      <div cdkDropListGroup class="container">
+         <div (cdkDropListDropped)="dropListDropped()" [cdkDropListEnterPredicate]="dropListEnterPredicate" cdkDropList></div>
+         <div (cdkDropListDropped)="dropListDropped()" *ngFor="let image of images; let i = index"
+              [cdkDropListEnterPredicate]="dropListEnterPredicate"
+              cdkDropList>
+            <div (cdkDragMoved)="dragMoved($event)" cdkDrag class="box">
+               <button mat-icon-button *ngIf="i > 0" (click)="deleteImage(image)" style="mix-blend-mode: difference;">
+                  <mat-icon>close</mat-icon>
+               </button>
+               <img [src]="image" alt="broken_image">
+               <img *cdkDragPreview [src]="image" alt="broken_image">
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div mat-dialog-actions>
+      <button (click)="onCancel.emit(true)" cdkFocusInitial mat-button>Cancelar</button>
+      <button (click)="confirmChanges()" mat-button>Confirmar Alterações</button>
+   </div>
+</div>

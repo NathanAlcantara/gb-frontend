@@ -1,0 +1,5 @@
+export enum PaymentType {
+	IN_CASH = 'IN_CASH',
+	FREE_INTEREST = 'FREE_INTEREST',
+	WITH_INTEREST = 'WITH_INTEREST'
+}

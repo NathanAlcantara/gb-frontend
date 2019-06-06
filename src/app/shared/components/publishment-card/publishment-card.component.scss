@@ -1,0 +1,31 @@
+.publish-card {
+	max-width: 400px;
+	text-align: center;
+
+	h4 {
+		margin: 10px 0 !important;
+		max-width: 200px;
+		word-wrap: break-word;
+	}
+
+	h2 {
+		color: red;
+	}
+
+	p {
+		font-size: 12px;
+		margin-bottom: 0;
+
+		span {
+			text-decoration: line-through;
+		}
+	}
+
+	button {
+		margin: 10px;
+	}
+
+	mdb-carousel > div {
+		max-width: 250px;
+	}
+}

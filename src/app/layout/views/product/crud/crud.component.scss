@@ -1,0 +1,26 @@
+.crud-container {
+	margin: 5% auto;
+
+	mat-card {
+		padding: 1.5rem;
+		width: 700px;
+		height: 375px;
+	}
+
+	.col-sm-6 {
+		margin-top: 15px;
+	}
+
+	.loader {
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 56px;
+		right: 0;
+		background: rgba(0, 0, 0, 0.15);
+		z-index: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+}
