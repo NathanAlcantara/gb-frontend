@@ -20,7 +20,8 @@
    <n-view-images (onCancel)="cancel()" (onReorderImages)="confirm($event)" *ngIf="group.value === 'view'"
                   [images]="data.images"></n-view-images>
 
-   <n-upload-image (onAddPhoto)="confirm($event)" (onCancel)="cancel()" *ngIf="group.value === 'add'" [data]="data"></n-upload-image>
+   <n-upload-image (onAddPhoto)="confirm($event)" (onCancel)="cancel()" *ngIf="group.value === 'add'"
+                   [data]="data"></n-upload-image>
 </div>
 
 <ng-template #newImage>

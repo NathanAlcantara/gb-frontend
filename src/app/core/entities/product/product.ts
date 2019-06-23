@@ -2,14 +2,9 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { PaymentType } from '~core/enums/parcel_type';
 import { ProductType } from '~core/enums/product_type';
-import { SizeType } from '~core/enums/size_type';
 
 import { isValid } from '~core/utils/helpers';
-import {
-	PROD,
-	AWS_BUCKET_PHOTOS,
-	AWS_BUCKET_DEV
-} from '../../utils/constants';
+import { AWS_BUCKET_PHOTOS } from '../../utils/constants';
 
 export interface ProductDto {
 	id: any;

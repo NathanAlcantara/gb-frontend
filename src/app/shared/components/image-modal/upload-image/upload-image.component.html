@@ -6,8 +6,10 @@
          <div style="display: flex; flex-direction: column;">
             <mat-form-field>
                <mat-label>Imagem</mat-label>
-               <ngx-mat-file-input (change)="fileChangeEvent($event)" accept=".jpg" formControlName="image" required></ngx-mat-file-input>
-               <mat-error *ngIf="formImageUpload.get('image').hasError('required')">{{ getErrorMessage('required') }}</mat-error>
+               <ngx-mat-file-input (change)="fileChangeEvent($event)" accept=".jpg" formControlName="image"
+                                   required></ngx-mat-file-input>
+               <mat-error
+                  *ngIf="formImageUpload.get('image').hasError('required')">{{ getErrorMessage('required') }}</mat-error>
                <mat-error *ngIf="formImageUpload.get('image').hasError('maxContentSize')">
                   {{ getErrorMessage('actualSize', formImageUpload.get('image')?.getError('maxContentSize').actualSize | byteFormat) }}
                   {{ getErrorMessage('maxSize', formImageUpload.get('image')?.getError('maxContentSize').maxSize | byteFormat) }}

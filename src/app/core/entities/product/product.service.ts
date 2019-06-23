@@ -34,9 +34,9 @@ const getProduct = gql`
       exPrice
       paymentType
       numberOfParcels
-			valueOfParcel
-			colors
-			sizes
+	  valueOfParcel
+	  colors
+	  sizes
       updatedDate
     }
   }
@@ -52,9 +52,9 @@ const addProduct = gql`
     $exPrice: Float,
     $paymentType: [String!]!,
     $numberOfParcels: Int,
-		$valueOfParcel: Float!,
-		$colors: [String!]!,
-		$sizes: [String!]!) {
+	$valueOfParcel: Float!,
+	$colors: [String!]!,
+	$sizes: [String]) {
       addProduct(
       	code: $code,
         name: $name,
@@ -82,9 +82,9 @@ const updateProduct = gql`
     $exPrice: Float,
     $paymentType: [String!]!,
     $numberOfParcels: Int,
-		$valueOfParcel: Float!,
-		$colors: [String!]!,
-		$sizes: [String!]!) {
+	$valueOfParcel: Float!,
+	$colors: [String!]!,
+	$sizes: [String]) {
       updateProduct(
         id: $id,
         name: $name,
@@ -137,15 +137,15 @@ export class ProductService extends EntityService<Product> {
 			formData.append('images', file);
 		}
 
-		return this.http.post(`${ this.baseURL }/images-upload`, formData).pipe(defaultCatch());
+		return this.http.post(`${this.baseURL}/images-upload`, formData).pipe(defaultCatch());
 	}
 
 	deletePhotos(photosUrl: string[]) {
-		const keys = photosUrl.map(link => ({'Key': link.slice(link.lastIndexOf('/')).replace('/', '')}) );
+		const keys = photosUrl.map(link => ({ 'Key': link.slice(link.lastIndexOf('/')).replace('/', '') }));
 		const body = {
 			keys: keys
 		};
 
-		return this.http.post(`${ this.baseURL }/images-delete`, body).pipe(defaultCatch());
+		return this.http.post(`${this.baseURL}/images-delete`, body).pipe(defaultCatch());
 	}
 }

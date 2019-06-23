@@ -3,7 +3,8 @@
 
    <div mat-dialog-content>
       <div cdkDropListGroup class="container">
-         <div (cdkDropListDropped)="dropListDropped()" [cdkDropListEnterPredicate]="dropListEnterPredicate" cdkDropList></div>
+         <div (cdkDropListDropped)="dropListDropped()" [cdkDropListEnterPredicate]="dropListEnterPredicate"
+              cdkDropList></div>
          <div (cdkDropListDropped)="dropListDropped()" *ngFor="let image of images; let i = index"
               [cdkDropListEnterPredicate]="dropListEnterPredicate"
               cdkDropList>

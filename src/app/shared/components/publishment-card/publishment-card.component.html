@@ -18,7 +18,8 @@
 
       <h2>{{ converterCurrency(product?.actualPrice) }}</h2>
 
-      <div *ngIf="getValueOfParcels() || (product?.paymentType && product?.paymentType.length && product?.paymentType[0] === 'IN_CASH')">
+      <div
+         *ngIf="getValueOfParcels() || (product?.paymentType && product?.paymentType.length && product?.paymentType[0] === 'IN_CASH')">
          <div *ngFor="let payment of product?.paymentType; let i = index">
             <p *ngIf="payment !== 'IN_CASH' && getValueOfParcels() && i > 0">ou</p>
 

@@ -6,8 +6,6 @@ cli({
 		"--aot",
 		"--port",
 		"0",
-		"--ssl",
-		"true",
 		...process.argv.slice(2),
 	]
 });

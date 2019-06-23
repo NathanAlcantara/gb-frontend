@@ -16,12 +16,12 @@ export class BaseFormComponent extends BaseComponent {
 		const errorMessages = {
 			required: 'Campo obrigatório.',
 			email: 'Tem que ser um e-mail',
-			min: `Não é permitido números abaixo de ${ number }`,
-			minLength: `Aqui vai no minímo ${ number } caracteres`,
-			maxLength: `Aqui vai no máximo ${ number } caracteres`,
+			min: `Não é permitido números abaixo de ${number}`,
+			minLength: `Aqui vai no minímo ${number} caracteres`,
+			maxLength: `Aqui vai no máximo ${number} caracteres`,
 			imageRequired: 'Imagem obrigatória',
-			actualSize: `Tamanho atual do arquivo: ${ number }`,
-			maxSize: `Tamanho máximo permitido: ${ number }`,
+			actualSize: `Tamanho atual do arquivo: ${number}`,
+			maxSize: `Tamanho máximo permitido: ${number}`,
 		};
 
 		return errorMessages[validation];

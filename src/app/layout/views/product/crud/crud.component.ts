@@ -63,7 +63,7 @@ export class ProductsCrudComponent extends BaseFormComponent implements OnInit {
 			paymentType: [{ value: undefined, disabled: false }, Validators.compose([Validators.required])],
 			numberOfParcels: [{ value: 1, disabled: false }, Validators.compose([Validators.min(1), Validators.max(99)])],
 			colors: [{ value: undefined, disabled: false }, Validators.compose([Validators.required])],
-			sizes: [{ value: undefined, disabled: false }, Validators.compose([Validators.required])],
+			sizes: [{ value: undefined, disabled: false }],
 			valueOfParcel: [{ value: undefined, disabled: false }],
 		});
 

@@ -32,7 +32,7 @@ export class PublishmentCardComponent implements OnInit {
 			exPrice: 89.90,
 			paymentType: [PaymentType.FREE_INTEREST],
 			numberOfParcels: 3,
-			colors: [ EnumValues.getNameFromValue(ColorHex, ColorHex.WHITE) ],
+			colors: [EnumValues.getNameFromValue(ColorHex, ColorHex.WHITE)],
 			sizes: [SizeType.M, SizeType.G],
 			valueOfParcel: 16.63,
 		};
