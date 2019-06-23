@@ -5,11 +5,11 @@
       <div cdkDropListGroup class="container">
          <div (cdkDropListDropped)="dropListDropped()" [cdkDropListEnterPredicate]="dropListEnterPredicate"
               cdkDropList></div>
-         <div (cdkDropListDropped)="dropListDropped()" *ngFor="let image of images; let i = index"
+         <div (cdkDropListDropped)="dropListDropped()" *ngFor="let image of images"
               [cdkDropListEnterPredicate]="dropListEnterPredicate"
               cdkDropList>
             <div (cdkDragMoved)="dragMoved($event)" cdkDrag class="box">
-               <button mat-icon-button *ngIf="i > 0" (click)="deleteImage(image)" style="mix-blend-mode: difference;">
+               <button mat-icon-button *ngIf="images.length != 1" (click)="deleteImage(image)" style="mix-blend-mode: difference;">
                   <mat-icon>close</mat-icon>
                </button>
                <img [src]="image" alt="broken_image">
