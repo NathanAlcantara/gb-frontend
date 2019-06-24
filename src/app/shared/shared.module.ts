@@ -14,6 +14,7 @@ import { BaseFormComponent } from '~shared/bases/form.component';
 import { BaseListComponent } from './bases/list.component';
 import { EmptyStateComponent } from './components/empty-state/empty-state.component';
 import { FooterComponent } from './footer/footer.component';
+import { GbListComponent } from './components/gb-list/gb-list.component';
 import { HeaderComponent } from './header/header.component';
 import { ImageModalComponent } from './components/image-modal/image-modal.component';
 import { InteractIconComponent } from './components/interact-icon/interact-icon.component';
@@ -41,6 +42,7 @@ import { ViewImagesComponent } from './components/image-modal/view-images/view-i
 		EmptyStateComponent,
 		FormsModule,
 		FooterComponent,
+		GbListComponent,
 		HeaderComponent,
 		ImageModalComponent,
 		MaterialModule,
@@ -55,6 +57,7 @@ import { ViewImagesComponent } from './components/image-modal/view-images/view-i
 		BaseListComponent,
 		EmptyStateComponent,
 		FooterComponent,
+		GbListComponent,
 		HeaderComponent,
 		ImageModalComponent,
 		InteractIconComponent,

@@ -8,7 +8,7 @@ import { UserComponent } from './user/user.component';
 import { AdminComponent } from '~layout/user/admin/admin.component';
 import { ProductsCrudComponent } from '~layout/views/product/crud/crud.component';
 import { ProductsListComponent } from '~layout/views/product/list/list.component';
-import { ProductService } from '../core/entities/product/product.service';
+import { ProductService } from '~core/entities/product/product.service';
 
 @Injectable()
 export class LayoutRoutingProductResolver implements Resolve<any> {
@@ -31,16 +31,6 @@ export class LayoutRoutingEntityResolver implements Resolve<any> {
 }
 
 @Injectable()
-export class ListProductRequest implements Resolve<any> {
-	constructor(private productService: ProductService) {
-	}
-
-	public resolve() {
-		return this.productService.findAll();
-	}
-}
-
-@Injectable()
 export class EditProductRequest implements Resolve<any> {
 	constructor(private productService: ProductService) {
 	}
@@ -52,7 +42,7 @@ export class EditProductRequest implements Resolve<any> {
 
 @Component({
 	template: `
-		<router-outlet></router-outlet>
+        <router-outlet></router-outlet>
 	`
 })
 export class EmptyComponent {
@@ -123,10 +113,7 @@ export const routes: Routes = [
 		children: [
 			{
 				path: 'products',
-				component: ProductsListComponent,
-				resolve: {
-					request: ListProductRequest
-				}
+				component: ProductsListComponent
 			}
 		]
 	},
@@ -158,7 +145,6 @@ export const routes: Routes = [
 	imports: [RouterModule.forRoot(routes)],
 	exports: [RouterModule],
 	providers: [
-		ListProductRequest,
 		EditProductRequest,
 	],
 	declarations: [EmptyComponent]

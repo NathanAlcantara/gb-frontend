@@ -1,0 +1,71 @@
+<div class="centralize" style="margin-top: 15px;">
+    <div>
+        <mat-form-field>
+            <input matInput placeholder="Filter" (keyup)="onSearch.next($event?.target?.value)">
+        </mat-form-field>
+    </div>
+
+    <div *ngIf="primaryAction" style="text-align: end; flex-basis: 65%">
+        <a mat-mini-fab color="accent" (click)="primaryAction.action()">
+            <mat-icon>add</mat-icon>
+        </a>
+    </div>
+</div>
+
+<div class="centralize">
+    <div style="width: 75%; background: white">
+
+        <n-empty-state
+                *ngIf="!isLoading"
+                [isEmpty]="gridData && gridData?.length === 0"
+                [isError]="hasError"
+                firstTitleEmpty="Não encontramos nenhum registro,"
+                firstTitleError="Ocorreu um erro inesperado,"
+                secondTitleEmpty="por favor cadastre um novo produto."
+                secondTitleError="por favor contate o administrador."
+        ></n-empty-state>
+
+        <div class="mat-elevation-z8" *ngIf="!isLoading ? (!hasError && gridData?.length !== 0) : true">
+            <table mat-table matSort
+                   matSortActive="name"
+                   matSortDirection="desc"
+                   matSortDisableClear="true"
+                   [dataSource]="gridData"
+                   (matSortChange)="onChangeSort.next($event)"
+            >
+                <ng-container *ngFor="let column of gridColumns" [matColumnDef]="column.field">
+                    <th *matHeaderCellDef mat-header-cell mat-sort-header [disabled]="!column.sorted">
+                        {{column.label}}
+                    </th>
+                    <td *matCellDef="let row" mat-cell>
+                        {{column.converter ? column.converter(row[column.field]) : row[column.field]}}
+                    </td>
+                </ng-container>
+
+                <ng-container *ngIf="listAction" matColumnDef="actions">
+                    <th *matHeaderCellDef mat-header-cell> Ações</th>
+                    <td *matCellDef="let row" mat-cell>
+                        <button (click)="listAction.action(row._id)" mat-raised-button> {{listAction.label}} </button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="columnsLabel"></tr>
+                <tr mat-row *matRowDef="let row; columns: columnsLabel;"></tr>
+            </table>
+
+            <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center">
+                <mat-progress-spinner
+                        color="primary"
+                        mode="indeterminate">
+                </mat-progress-spinner>
+            </div>
+
+            <mat-paginator
+                    showFirstLastButtons="true"
+                    [pageSizeOptions]="[10, 25, 50, 100]"
+                    [length]="totalResults"
+                    (page)="onChangePagination.next($event)"
+            ></mat-paginator>
+        </div>
+    </div>
+</div>
