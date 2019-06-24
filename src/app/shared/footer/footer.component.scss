@@ -1,5 +1,11 @@
 mat-toolbar {
-	position: fixed;
-	left: 0;
-	bottom: 0;
+	justify-content: center;
+	position: relative;
+	clear: both;
+	height: 70px;
+	margin-top: -70px;
+
+	span {
+		align-content: center;
+	}
 }

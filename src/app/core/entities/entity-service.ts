@@ -7,8 +7,8 @@ export class EntityService<T> {
 
 	constructor(
 		protected apollo: Apollo,
-		protected entityQueries?: any,
-		protected entityMutations?: any,
+		protected entityQueries?,
+		protected entityMutations?,
 	) {
 		this.entityQueries = entityQueries;
 		this.entityMutations = entityMutations;
@@ -18,15 +18,19 @@ export class EntityService<T> {
 		return this.apollo.watchQuery({ query: this.entityQueries.all, fetchPolicy: 'network-only' });
 	}
 
+	findAllPaginate(listParams = {}): QueryRef<T> {
+		return this.apollo.watchQuery({ query: this.entityQueries.allPaginate, variables: { pagination: listParams }, fetchPolicy: 'network-only' });
+	}
+
 	findOne(entityId: string): QueryRef<T> {
 		return this.apollo.watchQuery({ query: this.entityQueries.one, variables: { id: entityId }, fetchPolicy: 'network-only' });
 	}
 
-	insert(body: any = {}) {
+	insert(body = {}) {
 		return this.apollo.mutate({ mutation: this.entityMutations.add, variables: body }).pipe(defaultCatch());
 	}
 
-	update(entityId: string, body: any = {}) {
+	update(entityId: string, body = {}) {
 		return this.apollo.mutate({ mutation: this.entityMutations.update, variables: { ...{ id: entityId }, ...body } }).pipe(defaultCatch());
 	}
 

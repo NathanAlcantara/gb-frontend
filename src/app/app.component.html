@@ -1,17 +1,22 @@
-<header></header>
+<div style="min-height: 100%">
+    <div style="padding-bottom: 150px;">
 
-<nav mat-align-tabs="center" mat-tab-nav-bar>
-   <a #rla="routerLinkActive"
-      *ngFor="let link of navLinks; let i = index"
-      [active]="rla.isActive"
-      [routerLink]="'products/' + link.path"
-      mat-tab-link routerLinkActive
-      style="font-size: 15px; text-decoration: none"
-   >
-      {{link.label.toUpperCase()}}
-   </a>
-</nav>
+        <header></header>
 
-<router-outlet></router-outlet>
+        <nav mat-align-tabs="center" mat-tab-nav-bar>
+            <a #rla="routerLinkActive"
+               *ngFor="let link of navLinks; let i = index"
+               [active]="rla.isActive"
+               [routerLink]="'products/' + link.path"
+               mat-tab-link routerLinkActive
+               style="font-size: 15px; text-decoration: none"
+            >
+                {{link.label.toUpperCase()}}
+            </a>
+        </nav>
+
+        <router-outlet></router-outlet>
+    </div>
+</div>
 
 <footer></footer>

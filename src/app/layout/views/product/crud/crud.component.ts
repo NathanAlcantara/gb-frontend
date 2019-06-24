@@ -131,9 +131,9 @@ export class ProductsCrudComponent extends BaseFormComponent implements OnInit {
 
 			let service: any;
 			if (id) {
-				service = this.productService.update(id, variables);
+				service = this.productService.update(id, { product: variables });
 			} else {
-				service = this.productService.insert(variables);
+				service = this.productService.insert({ product: variables });
 			}
 
 			service.pipe(takeUntil(this.ngUnsubscribe))

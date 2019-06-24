@@ -7,111 +7,96 @@ import gql from 'graphql-tag';
 import { defaultCatch } from '../../utils/helpers';
 
 const allProducts = gql`
-{
-	allProducts {
-		_id,
-		code,
-		name,
-		productType,
-		actualPrice,
-		paymentType,
-		numberOfParcels,
-		valueOfParcel,
-		colors,
-		sizes
+	query Product {
+		allProducts {
+			_id
+			code
+			name
+			productType
+			actualPrice
+			paymentType
+			numberOfParcels
+			valueOfParcel
+			colors
+			sizes
+			createDate
+			updatedDate
+		}
 	}
-}`;
+`;
+
+const allProductsWithPagination = gql`
+	query Product($pagination: PageableInput) {
+		allProducts(pagination: $pagination) {
+			_id
+			code
+			name
+			productType
+			actualPrice
+			paymentType
+			numberOfParcels
+			valueOfParcel
+			colors
+			sizes
+			createDate
+			updatedDate
+		}
+		countAllProducts
+	}
+`;
 
 const getProduct = gql`
-  query product($id: ID) {
-    oneProduct(id: $id) {
-      _id
-      code
-      name
-      productType
-      photosURL
-      actualPrice
-      exPrice
-      paymentType
-      numberOfParcels
-	  valueOfParcel
-	  colors
-	  sizes
-      updatedDate
-    }
-  }
+	query Product($id: ID) {
+		oneProduct(id: $id) {
+			_id
+			code
+			name
+			productType
+			actualPrice
+			paymentType
+			numberOfParcels
+			valueOfParcel
+			colors
+			sizes
+			createDate
+			updatedDate
+		}
+	}
 `;
 
 const addProduct = gql`
-  mutation addProduct(
-  	$code: Int!,
-    $name: String!,
-    $productType: String!,
-    $photosURL: [String!]!,
-    $actualPrice: Float!,
-    $exPrice: Float,
-    $paymentType: [String!]!,
-    $numberOfParcels: Int,
-	$valueOfParcel: Float!,
-	$colors: [String!]!,
-	$sizes: [String]) {
-      addProduct(
-      	code: $code,
-        name: $name,
-        productType: $productType,
-        photosURL: $photosURL,
-        actualPrice: $actualPrice,
-        exPrice: $exPrice,
-        paymentType: $paymentType,
-        numberOfParcels: $numberOfParcels,
-				valueOfParcel: $valueOfParcel,
-				colors: $colors,
-				sizes: $sizes) {
-        _id
-        }
-    }
+	mutation addProduct($product: ProductInput!) {
+		addProduct(product: $product) {
+			_id
+		}
+	}
 `;
 
 const updateProduct = gql`
-  mutation updateProduct(
-    $id: ID!
-    $name: String!,
-    $productType: String!,
-    $photosURL: [String!]!,
-    $actualPrice: Float!,
-    $exPrice: Float,
-    $paymentType: [String!]!,
-    $numberOfParcels: Int,
-	$valueOfParcel: Float!,
-	$colors: [String!]!,
-	$sizes: [String]) {
-      updateProduct(
-        id: $id,
-        name: $name,
-        productType: $productType,
-        photosURL: $photosURL,
-        actualPrice: $actualPrice,
-        exPrice: $exPrice,
-        paymentType: $paymentType,
-        numberOfParcels: $numberOfParcels,
-				valueOfParcel: $valueOfParcel,
-				colors: $colors,
-				sizes: $sizes) {
-          updatedDate
-        }
-    }
+	mutation updateProduct(
+		$id: ID!
+		$product: Product!
+	) {
+		updateProduct(
+			id: $id
+			product: $product
+		) {
+			updatedDate
+		}
+	}
 `;
 
 const deleteProduct = gql`
-  mutation removeProduct($id: ID!) {
-    removeProduct(id: $id) {
-      _id
-    }
-  }
+	mutation removeProduct($id: ID!) {
+		removeProduct(id: $id) {
+			_id
+		}
+	}
 `;
 
 const entityQueries = {
 	all: allProducts,
+	allPaginate: allProductsWithPagination,
 	one: getProduct
 };
 

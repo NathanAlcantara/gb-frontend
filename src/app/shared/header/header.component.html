@@ -1,14 +1,13 @@
 <mat-toolbar color="primary">
-   <interact-icon (onClick)="goToHomePage()" icon="home" style="flex-grow: 1"></interact-icon>
+   <interact-icon (onClick)="goToHomePage()" icon="home"></interact-icon>
 
    <div style="flex-grow: 100; text-align: center">
       <span> GLAMMBOUTIQUE </span>
    </div>
 
-   <interact-icon (onClick)="goToCartPage()" [number]="cartItems" icon="shopping_cart"
-                  style="flex-grow: 1"></interact-icon>
+   <interact-icon (onClick)="goToCartPage()" [number]="cartItems" icon="shopping_cart"></interact-icon>
 
-   <search-bar (onSearch)="search($event)" style="flex-grow: 1"></search-bar>
+   <search-bar (onSearch)="search($event)"></search-bar>
 
-   <interact-icon (onClick)="goToUserPage()" icon="account_circle" style="flex-grow: 1"></interact-icon>
+   <interact-icon (onClick)="goToUserPage()" icon="account_circle"></interact-icon>
 </mat-toolbar>
